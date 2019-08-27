@@ -18,7 +18,6 @@ fs.readdir(__dirname + '/images', function(err, files) {
             images.push(f);
         });
 
-        upload_random_image(images);
         setInterval(function(){upload_random_image(images);}, 21600000);
     }
 });
