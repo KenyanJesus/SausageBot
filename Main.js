@@ -24,8 +24,7 @@ fs.readdir(__dirname + '/images', function(err, files) {
 
 
 function random_from_array(images){
-    images = [Math.floor(Math.random() * images.length)];
-    return images;
+    return images = [Math.floor(Math.random() * images.length)];
 }
 
 function upload_random_image(images){
