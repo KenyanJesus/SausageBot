@@ -16,24 +16,15 @@ fs.readdir(__dirname + '/images', function(err, files) {
         files.forEach(function(f) {
             images.push(f);
         });
+        upload_random_image(images);
         setInterval(function(){upload_random_image(images);}, 1000*60*60*8);
     }
 });
 
 
 function random_from_array(images){
-    var dupImages = [0];
     images = [Math.floor(Math.random() * images.length)];
-
-    if (dupImages.length == 10){
-        dupImages.length = 0;
-        dupImages.push(images);
-        return images;
-    } else {
-        dupImages.push(images);
-        images = images.filter(value => -1 !== dupImages.indexOf(value));
-        return images;
-    }
+    return images;
 }
 
 function upload_random_image(images){
