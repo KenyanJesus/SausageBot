@@ -25,7 +25,11 @@ function random_from_array(images){
     if (dupArray.length >= 25 && dupArray.includes(random)){
         dupArray.length = [];
         return images[random];
-    } else {
+    }
+    else if(dupArray.includes(random)){
+        random_from_array();
+    }
+    else {
         dupArray.push(random);
         return images[random];
     }
