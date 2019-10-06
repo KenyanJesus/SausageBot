@@ -1,10 +1,9 @@
 var Twit = require('twit')
-
+var dupArray = [];
 var fs = require('fs'),
     path = require('path'),
     Twit = require('twit'),
     config = require(path.join(__dirname, 'config.js'));
-    //images = require(path.join(__dirname, 'images.js'));
 
 var T = new Twit(config);
 fs.readdir(__dirname + '/images', function(err, files) {
@@ -16,15 +15,20 @@ fs.readdir(__dirname + '/images', function(err, files) {
         files.forEach(function(f) {
             images.push(f);
         });
-        console.log("bad");
-        upload_random_image(images);
-        setInterval(function(){upload_random_image(images);}, 1000*60*60*8);
+        setInterval(function(){upload_random_image(images);}, 43200000);
     }
 });
 
 
 function random_from_array(images){
-    return images[Math.floor(Math.random() * images.length)];
+    var random = Math.floor(Math.random() * images.length);
+    if (dupArray.length >= 25 && dupArray.includes(random)){
+        dupArray.length = [];
+        return images[random];
+    } else {
+        dupArray.push(random);
+        return images[random];
+    }
 }
 
 function upload_random_image(images){
