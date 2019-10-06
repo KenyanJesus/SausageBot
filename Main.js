@@ -1,9 +1,9 @@
 var Twit = require('twit')
-var dupArray = [];
 var fs = require('fs'),
     path = require('path'),
     Twit = require('twit'),
     config = require(path.join(__dirname, 'config.js'));
+var dupArray = [];
 
 var T = new Twit(config);
 fs.readdir(__dirname + '/images', function(err, files) {
